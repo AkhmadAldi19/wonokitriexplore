@@ -1,4 +1,7 @@
-import 'package:flutter/material.dart';import 'onboarding/splash_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:wonokitriexplore/src/pages/login/ForgotPassword/forgotPassword1.dart';
+import 'package:wonokitriexplore/src/pages/login/register.dart';
+import 'onboarding/splash_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,7 +13,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
           primarySwatch: Colors.green),
           debugShowCheckedModeBanner: false,
-          home: const SplashScreen(),
+          home: const ForgotPassword1(),
         );
       }
     }

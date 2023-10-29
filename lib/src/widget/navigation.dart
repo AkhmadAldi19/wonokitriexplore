@@ -49,7 +49,7 @@ class _DashboardPageState extends State<DashboardPage> {
         borderRadius: 25,
         itemBorderRadius: 25,
         currentIndex: navIndex,
-        padding: const EdgeInsets.only(bottom: 15, top: 15),
+        padding: const EdgeInsets.only(bottom: 15, top: 15 ,left: 5, right: 5),
         backgroundColor: const Color(0xFF8BC342),
         selectedBackgroundColor: Colors.white,
         selectedItemColor: const Color(0xFF8BC342),

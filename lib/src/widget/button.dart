@@ -1,27 +1,42 @@
 import 'package:flutter/material.dart';
+
 class ButtonComponent extends StatelessWidget {
-  var title;
-  Color? color;
-  double? size;
-  VoidCallback? onPressed;
-  ButtonComponent({super.key,
-    this.title,
-    this.color,
-    this.size,
-  this.onPressed});
+  final String title;
+  final VoidCallback? onPressed;
+
+  ButtonComponent({
+    Key? key,
+    required this.title,
+    this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed,
+      onTap: () {
+        // Periksa apakah onPressed tidak null sebelum melakukan navigasi
+        if (onPressed != null) {
+          onPressed!(); // Panggil fungsi onPressed jika tidak null
+        }
+      },
       child: Container(
-        width: size,
+        width: MediaQuery.of(context).size.width - 50,
+        height: 54,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: color,
+          borderRadius: BorderRadius.circular(8),
+          color: const Color(0xFF8BC342),
         ),
-        child: Center(child: Text(title)),
+        child: Center(
+          child: Text(
+            title,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -1,63 +1,169 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:csc_picker/csc_picker.dart';
 
 class CustomTextField extends StatelessWidget {
-  final double width;
-  final double height;
-  final double titleFontSize;
-  final double textFieldFontSize;
-  final double iconSize;
-  final IconData icon;
   final String title;
-  final TextEditingController controller;
+  final String hidetitle;
 
   const CustomTextField({super.key,
-    required this.width,
-    required this.height,
-    required this.titleFontSize,
-    required this.textFieldFontSize,
-    required this.iconSize,
-    required this.icon,
     required this.title,
-    required this.controller,
+    required this.hidetitle,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      height: height,
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
+      alignment: Alignment.topLeft,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           Text(
             title,
-            style: TextStyle(
-              fontSize: titleFontSize,
-              fontWeight: FontWeight.bold,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: Color(0xFF222222),
             ),
           ),
-          Row(
-            children: [
-              Icon(
-                icon,
-                size: iconSize,
+          const SizedBox(height: 8),
+          TextField(
+            decoration: InputDecoration(
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green, width: 2),
               ),
-              const SizedBox(width: 10.0),
-              Expanded(
-                child: TextField(
-                  controller: controller,
-                  style: TextStyle(
-                    fontSize: textFieldFontSize,
-                  ),
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
-                ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xFF777A77), width: 1),
               ),
-            ],
+              border: OutlineInputBorder(),
+              counterText: '',
+              hintText: hidetitle,
+              hintStyle: const TextStyle(color: Colors.grey, fontSize: 16.0),
+            ),
           ),
         ],
       ),
     );
   }
 }
+
+class PasswordTextField extends StatefulWidget {
+  final String title;
+  final String hidetitle;
+
+  const PasswordTextField({super.key,
+    required this.title,
+    required this.hidetitle,
+  });
+
+  @override
+  _PasswordTextFieldState createState() => _PasswordTextFieldState();
+}
+
+class _PasswordTextFieldState extends State<PasswordTextField> {
+  bool _obscureText = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
+      alignment: Alignment.topLeft,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            widget.title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: Color(0xFF222222),
+            ),
+          ),
+          const SizedBox(height: 8),
+          TextFormField(
+            obscureText: _obscureText,
+            decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              hintText: widget.hidetitle,
+              suffixIcon: InkWell(
+                onTap: _togglePasswordVisibility,
+                child: Icon(
+                  _obscureText ? Icons.visibility : Icons.visibility_off,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+class Customphone extends StatelessWidget {
+  final String title;
+  final String hidetitle;
+
+  const Customphone({super.key,
+    required this.title,
+    required this.hidetitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 25.0),
+      alignment: Alignment.topLeft,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: Color(0xFF222222),
+            ),
+          ),
+          const SizedBox(height: 8),
+          IntlPhoneField(
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(
+                borderSide: BorderSide(),
+              ),
+            ),
+            initialCountryCode: 'INA',
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly, // Hanya menerima input angka
+            ],
+            onChanged: (phone) {
+              print(phone.completeNumber);
+            },
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
