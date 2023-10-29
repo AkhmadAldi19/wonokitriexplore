@@ -40,6 +40,9 @@ dependencies:
   floating_bottom_navigation_bar: ^1.5.2
   dashboard: ^0.0.3+1
   flutter_svg: ^2.0.7
+  validation_textformfield: ^2.2.5
+  intl_phone_field: ^3.2.0
+  csc_picker: ^0.2.7
 
 dev_dependencies:
   flutter_test:
