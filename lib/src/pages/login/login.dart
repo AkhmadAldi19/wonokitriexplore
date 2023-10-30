@@ -4,6 +4,7 @@ import 'package:wonokitriexplore/src/pages/login/ForgotPassword/forgotPassword1.
 import 'package:wonokitriexplore/src/widget/textfield.dart';
 
 import '../../widget/button.dart';
+import '../../widget/navigation.dart';
 
 
 class LoginPage extends StatelessWidget {
@@ -83,7 +84,16 @@ class LoginPage extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 25.0),
                 child: Column(
                   children: <Widget> [
-                    ButtonComponent(title: "Login"),
+                    ButtonComponent(title: "Login",onPressed:() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const DashboardPage();
+                          },
+                        ),
+                      );
+                    },),
                     const SizedBox(height: 62),
                     Text.rich(
                       TextSpan(
